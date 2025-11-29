@@ -1,9 +1,10 @@
 #-------------------------------------------------------------------------
 # AUTHOR: Noah Ojeda
 # FILENAME: cnn.py
-# SPECIFICATION: description of the program
+# SPECIFICATION: Train and evaluate a CNN using TensorFlow/Keras to classify handwritten
+# digit images from a provided dataset.
 # FOR: CS 4210 - Assignment #4
-# TIME SPENT: 
+# TIME SPENT: ~45 minutes
 #-------------------------------------------------------------------------
 
 # Importing Python libraries
@@ -13,14 +14,6 @@ from PIL import Image
 import tensorflow as tf
 from tensorflow.keras import layers, models
 
-#paths for the train and test datasets
-train_path = os.path.join(".", "train")
-test_path = os.path.join(".", "test")
-
-
-
-print("Train path exists:", os.path.isdir(train_path))
-print("Test path exists:", os.path.isdir(test_path))
 # Function to load dataset
 def load_digit_images_from_folder(folder_path, image_size=(32, 32)):
     X = []
@@ -38,9 +31,9 @@ def load_digit_images_from_folder(folder_path, image_size=(32, 32)):
         y.append(label)
     return np.array(X), np.array(y)
 
-# Set your own paths here (relative to your project folder)
-train_path = os.path.join("images", "train")
-test_path = os.path.join("images", "test")
+#paths for the train and test datasets
+train_path = os.path.join(".", "train")
+test_path = os.path.join(".", "test")
 
 # Loading the raw images using the provided function. Hint: Use the provided load_digit_images_from_folder function that outputs X_train, Y_train for train_path and
 # as X_test, Y_test for test_path
@@ -64,7 +57,7 @@ model = models.Sequential([
     # Add a convolutional layer with 32 filters of size 3x3, relu activation, and input shape 32x32x1
     # Use layers.[add a layer here],
     # --> add your Python code here
-    layers.Conv2D(32, (3, 3), activiation='relu', input_shape=(32, 32, 1)),
+    layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 1)),
 
     # Add a max pooling layer with pool size 2x2
     # Use layers.[add a layer here],
@@ -79,7 +72,7 @@ model = models.Sequential([
     # Add a dense (fully connected) layer with 64 neurons and relu activation
     # Use layers.[add a layer here],
     # --> add your Python code here
-    layers.Dense(64, activitation= 'relu'),
+    layers.Dense(64, activation= 'relu'),
 
     # Add the output layer with 10 neurons (digits 0–9) and softmax activation
     # Use layers.[add a layer here]
